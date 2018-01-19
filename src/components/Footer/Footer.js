@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './Footer.css'
 
 class Footer extends Component{
     constructor(props){
@@ -10,8 +11,9 @@ class Footer extends Component{
     render(){
         return(
             <div className='Footer'>
-                <input className='PlayerInput'placeholder="put player name here"></input>
+                <input className='PlayerInput' placeholder="put player name here"></input>
                 <button>Add Player</button>
+                <button>Edit Player</button>
                 <button className="LeaderBoardsButton">Leader Boards</button>
             </div>
         )
