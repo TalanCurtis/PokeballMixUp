@@ -1,0 +1,33 @@
+.Card{
+    background-color: blue;
+    height: 500px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Picture{
+    background: red;
+    height: 200px;
+    width: 200px;
+}
+.PlayerName{
+    color: white;
+    font-weight: bolder;
+}
+.PokemonName{
+    color: white;
+    font-weight: bolder;
+}
+
+
+.Info{
+    background: white;
+    height: 50px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

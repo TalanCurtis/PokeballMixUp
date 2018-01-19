@@ -1,0 +1,29 @@
+[
+    {
+    "players":[
+        {
+            "id": 0,
+            "name":"Joe joe"
+        },
+        {
+            "id": 1,
+            "name":"Mikey"
+        },
+        {
+            "id": 2,
+            "name":"Tippy"
+        },
+        {
+            "id": 3,
+            "name":"Zipster"
+        }
+    ]
+    }
+]
+[[id,0,name,email@email.com,],[id,0,name,email@email.com,],]
+[id, 0, name,]
+id,0,name,email@email.com,BREAK,
+id,0,name,email@email.com,
+id,0,name,email@email.com,
+id,0,name,email@email.com,
+id,0,name,email@email.com,

@@ -1,0 +1,30 @@
+.App{
+    background-color: rgb(85, 95, 85);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.BattleGround{
+    background: green;
+    height: 500px;
+    width: 800px;
+    display: flex;
+}
+.MidContent{
+    background: rebeccapurple;
+    height: 500px;
+    width: 100px;
+}
+.Footer{
+    background: red;
+    height: 100px;
+    width: 800px;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+
+}
