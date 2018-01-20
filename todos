@@ -1,1 +1,6 @@
 -- setup com
+
+ - in order to get the poke cards to know eachother stats,(get attack working) stats need to be created in parent component and pass them down to the components.
+ - find out how to unmount component and mount a new one.
+ - create  user: id, name, score,
+ - set up crud create, read, update, delete. 

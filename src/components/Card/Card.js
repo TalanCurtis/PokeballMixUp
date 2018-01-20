@@ -12,7 +12,7 @@ class Card extends Component{
             pokemonName:'Pokemon',
             health:0,
             attack:0,
-            image:"../../images/placeholderImage.jpg"
+            image:""
         }
     }
 
@@ -33,18 +33,20 @@ class Card extends Component{
               }
           }
 
-
           this.setState({
               pokemonName: res.data.forms[0].name,
               attack: attack,
               health: health,
               image: res.data.sprites.front_default
           })
-        //   this.setState({
-        //     todos: res.data,
-        //     userInput:""
-        //   })
         })
+      }
+
+      handleAttack(playerAttack, enemyHealth){
+          // get enemy component
+          //subtract player attack from enemyHealth
+          // set state // on both components.
+          console.log('I attacked');
       }
 
     render(){
@@ -57,7 +59,7 @@ class Card extends Component{
                     <p>Attack Power: {this.state.attack}</p>
                     <p>Health: {this.state.health}</p>
                 </div>
-                <AttackButton className='AttackButton'/>
+                <AttackButton className='AttackButton' onClick={()=>{this.handleAttack(10, 50)}}/>
             </div>
         )
     }
