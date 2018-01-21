@@ -12,7 +12,8 @@ class BattleGround extends Component{
             player:{
                 name:"",
                 pokeId:0,
-                pokemonName:"",
+                pokemonName:"placeholder name",
+                image:"placeholder image",
                 health: 0,
                 attack: 0,
                 lifes: 3,
@@ -21,7 +22,8 @@ class BattleGround extends Component{
             opponent: {
                 name:"",
                 pokeId:"",
-                pokemonName:"",
+                pokemonName:" opp placholder name",
+                image:"opp placeholder image",
                 health:0,
                 attack:0,
             },
@@ -34,14 +36,19 @@ class BattleGround extends Component{
         this.handleLeaderBoardUnmount = this.handleLeaderBoardUnmount.bind(this)
         this.handleCardPlayerUnmount = this.handleCardPlayerUnmount.bind(this)
         this.handleCardOpponentUnmount = this.handleCardOpponentUnmount.bind(this)
-        this.handleNamePanelSubmit = this.handleNamePanelSubmit.bind(this)
+        //this.handleNamePanelSubmit = this.handleNamePanelSubmit.bind(this)
     }
 
     
 
     handleNamePanelUnmount(){
         if (this.state.renderNamePanel === true){
+            //Start Game
+            // let copy = Object.assign({}, this.state.player)
+            // copy.name = userInput;
             this.setState({renderNamePanel: false})
+            this.handleCardPlayerUnmount()
+            this.handleCardOpponentUnmount()
         }else if(this.state.renderNamePanel === false){
             this.setState({
                 renderNamePanel: true,
@@ -51,11 +58,37 @@ class BattleGround extends Component{
             })
         }
     }
-
     handleCardPlayerUnmount(){
         if (this.state.renderCardPlayer=== true){
             this.setState({renderCardPlayer:false})
         }else if(this.state.renderCardPlayer=== false){
+            let copy = Object.assign({}, this.state.player)
+            let attack = 0,
+                health = 0,
+                pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1),
+                image=""
+
+            axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
+            .then( res => {
+            console.log(res);
+            for (let index in res.data.stats){
+                //console.log(res.data.stats[index].stat.name)
+                if(res.data.stats[index].stat.name === "attack"){
+                    //console.log(res.data.stats[index].base_stat)
+                    attack = res.data.stats[index].base_stat
+                }else if(res.data.stats[index].stat.name === "hp"){
+                    health = res.data.stats[index].base_stat
+                }
+            }
+            copy.attack = attack;
+            copy.health = health;
+            copy.pokemonName= res.data.forms[0].name
+            copy.image= res.data.sprites.front_default
+            this.setState({
+                player: copy
+            })
+        })
         this.setState({renderCardPlayer:true})
         }
     }
@@ -63,10 +96,37 @@ class BattleGround extends Component{
         if (this.state.renderCardOpponent=== true){
             this.setState({renderCardOpponent:false})
         }else if(this.state.renderCardOpponent=== false){
+            let copy = Object.assign({}, this.state.opponent)
+            let attack = 0,
+                health = 0,
+                pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1),
+                image=""
+
+            axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
+            .then( res => {
+            console.log(res);
+            for (let index in res.data.stats){
+                //console.log(res.data.stats[index].stat.name)
+                if(res.data.stats[index].stat.name === "attack"){
+                    //console.log(res.data.stats[index].base_stat)
+                    attack = res.data.stats[index].base_stat
+                }else if(res.data.stats[index].stat.name === "hp"){
+                    health = res.data.stats[index].base_stat
+                }
+            }
+            copy.attack = attack;
+            copy.health = health;
+            copy.pokemonName= res.data.forms[0].name
+            copy.image= res.data.sprites.front_default
+            this.setState({
+                opponent: copy
+            })
+        })
         this.setState({renderCardOpponent:true})
+
         }
     }
-
     handleLeaderBoardUnmount(){
         if (this.state.renderLeaderBoard=== true){
                 this.setState({
@@ -81,23 +141,18 @@ class BattleGround extends Component{
             })
         }
     }
-    ///NOT WORKING
-    handleAttack(attack, health){
-        console.log('attack')
-        let test = this.refs.player
-        console.log(test)
+    // handleChange(val){
+    //     let copyPlayer = Object.assign({},this.state.player.name=val)
+    //     this.setState({copyPlayer});
+    // }
+    // handleNamePanelSubmit(){
+    //     this.setState({renderNamePanel: false})
+    // }
 
-    }
-    changeName(){
-        console.log("change name")
-    }
     handleChange(val){
-        let copyPlayer = Object.assign({},this.state.player.name=val)
-        this.setState({copyPlayer});
-    }
-
-    handleNamePanelSubmit(){
-        this.setState({renderNamePanel: false})
+        let copy = Object.assign({}, this.state.player)
+        copy.name = val
+        this.setState({player:copy});
     }
 
     render(){
@@ -109,10 +164,35 @@ class BattleGround extends Component{
                     <div className="OpponentName">OpponentName</div>
                 </div>
                 <div className="Table">
-                    {this.state.renderNamePanel?<NamePanel unmountMe={this.handleNamePanelUnmount}/>: null}
+                    {this.state.renderNamePanel?<div>
+                        <div>Hey kid wake up! whats your name?
+                            <input 
+                                placeholder="Enter name"
+                                onChange={(e)=> this.handleChange(e.target.value)}
+                            ></input>
+                        </div>
+                        <NamePanel 
+                        unmountMe={this.handleNamePanelUnmount}
+                        start={this.handleNamePanelUnmount}
+                    /></div>: null}
                     {this.state.renderLeaderBoard?<LeaderBoard unmountMe={this.handleLeaderBoardUnmount}/>: null}
-                    {this.state.renderCardPlayer?<Card ref="player"unmountMe={this.handleCardPlayerUnmount}/>: null}
-                    {this.state.renderCardOpponent?<Card unmountMe={this.handleCardOpponentUnmount}/>: null}
+                    {this.state.renderCardPlayer?<Card 
+                        ref="player" 
+                        unmountMe={this.handleCardPlayerUnmount}
+                        pokemonName={this.state.player.pokemonName}
+                        image={this.state.player.image}
+                        health={this.state.player.health}
+                        attack={this.state.player.attack}
+                        pokeId={this.state.player.pokeId}
+                        />: null}
+                    {this.state.renderCardOpponent?<Card 
+                        unmountMe={this.handleCardOpponentUnmount}
+                        pokemonName={this.state.opponent.pokemonName}
+                        image={this.state.opponent.image}
+                        health={this.state.opponent.health}
+                        attack={this.state.opponent.attack}
+                        pokeId={this.state.opponent.pokeId}
+                    />: null}
                 </div>
                 <div className="BotBar">
                     <button onClick={this.handleAttack}>TestAttack</button>
