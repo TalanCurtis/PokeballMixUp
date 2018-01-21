@@ -5,31 +5,10 @@ import axios  from 'axios';
 class NamePanel extends Component{
     constructor(props){
         super(props);
-        // this.state = {
-            // userInput:"",
-            // id:0
-        // }
-        // this.handleSubmitPlayer = this.handleSubmitPlayer.bind(this)
-
-
     }
     dismiss(){
         this.props.unmountMe();
     } 
-
-    // handleChange(val){
-    //     this.setState({userInput:val});
-    // }
-
-    // handleSubmitPlayer(){
-    //     let name = this.state.userInput
-    //     let body = {id: 0 , name: name, score:0}
-    //     console.log(name);
-    //     axios.post('/api/leaderboard', body)
-    //     .then(res => {
-    //         console.log(body)
-    //     })
-    // }
 
     render(){
         return(

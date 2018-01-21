@@ -40,13 +40,10 @@ class BattleGround extends Component{
         this.handleNextOpponent = this.handleNextOpponent.bind(this)
     }
 
-    
-
+/// Handerlers controller flow and components being displayed
     handleNamePanelUnmount(){
         if (this.state.renderNamePanel === true){
             //Start Game
-            // let copy = Object.assign({}, this.state.player)
-            // copy.name = userInput;
             this.setState({renderNamePanel: false})
             this.handleCardPlayerUnmount()
             this.handleCardOpponentUnmount()
@@ -126,7 +123,6 @@ class BattleGround extends Component{
             })
         })
         this.setState({renderCardOpponent:true})
-
         }
     }
     handleLeaderBoardUnmount(){
@@ -143,13 +139,7 @@ class BattleGround extends Component{
             })
         }
     }
-    // handleChange(val){
-    //     let copyPlayer = Object.assign({},this.state.player.name=val)
-    //     this.setState({copyPlayer});
-    // }
-    // handleNamePanelSubmit(){
-    //     this.setState({renderNamePanel: false})
-    // }
+
     handleNextOpponent(){
         console.log('next opp')
         this.setState({renderCardOpponent:false})
@@ -228,7 +218,6 @@ class BattleGround extends Component{
         this.setState({player:copy});
     }
 
-
     handleAttack(){
         let copyPlayer = Object.assign({}, this.state.player)
         let copyOpp = Object.assign({}, this.state.opponent)
@@ -299,10 +288,7 @@ class BattleGround extends Component{
                 <div className="BotBar">
                     <p>lifes left: {this.state.player.lifes}</p>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
-                    {/* <input placeholder="change name" onChange={(e)=> this.handleChange(e.target.value)}></input> */}
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
-                    {/* <button onClick={this.handleCardPlayerUnmount}>TestPlayer</button>
-                    <button onClick={this.handleCardOpponentUnmount}>TestOpp</button> */}
                 </div>
 
             </div>
