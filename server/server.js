@@ -5,13 +5,25 @@ const express= require('express'),
 
 app.use(bodyParser.json());
 
-var players = [{id:0, name: "Jonny5", score: 2},{id: 1, name: "Mikky", score: 1},{id: 3, name: "Zippy", score: 0}]
+var leaderBoard = [{id:0, name: "Jonny5", score: 2},{id: 1, name: "Mikky", score: 1},{id: 3, name: "Zippy", score: 0}]
 
 
-// const pokeApi = 'http://pokeapi.co/api/v2/pokemon/:id';
-// app.get( pokeApi, (req, res)=>{
-//     res.status(200).send(console.log("Poke Api Hit"))
-// });
+const leaderBoardBaseUrl = '/api/leaderBoard';
+app.get( leaderBoardBaseUrl, (req, res)=>{
+    res.status(200).send(leaderBoard)
+});
+
+app.post( leaderBoardBaseUrl, (req, res)=>{
+    console.log(req.body)
+    res.status(200).send(req.body)
+});
+
+app.put( leaderBoardBaseUrl,(req, res)=>{
+    res.status(200).send("updated leaderboard")
+})
+app.delete( leaderBoardBaseUrl, (req,res)=>{
+    res.status(200).send("removed player from leaderboard")
+})
 
 
 app.listen(port, ()=>{

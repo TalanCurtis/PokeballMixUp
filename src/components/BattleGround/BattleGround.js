@@ -24,6 +24,7 @@ class BattleGround extends Component{
                 health:0,
                 attack:0,
             },
+            LeaderBoard:[],
             defeated:0,
             renderCardPlayer: false,
             renderCardOpponent: false,
@@ -44,13 +45,6 @@ class BattleGround extends Component{
             this.setState({renderNamePanel: true})
         }
     }
-    // handleNamePanelUnmount(){
-    //     if (this.state.renderNamePanel=== true){
-    //         this.setState({renderNamePanel:false})
-    //     }else if(this.state.renderNamePanel=== false){
-    //     this.setState({renderNamePanel:true})
-    //     }
-    // }
 
     handleCardPlayerUnmount(){
         if (this.state.renderCardPlayer=== true){
