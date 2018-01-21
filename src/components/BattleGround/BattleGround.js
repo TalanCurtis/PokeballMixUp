@@ -13,7 +13,7 @@ class BattleGround extends Component{
                 name:"",
                 pokeId:0,
                 pokemonName:"placeholder name",
-                image:"placeholder image",
+                image:"",
                 health: 0,
                 attack: 0,
                 lifes: 2,
@@ -42,9 +42,24 @@ class BattleGround extends Component{
 
 /// Handerlers controller flow and components being displayed
     handleNamePanelUnmount(){
+        // reset player stats
+        let resetPlayer={
+            name:"",
+            pokeId:0,
+            pokemonName:"placeholder name",
+            image:"placeholder image",
+            health: 0,
+            attack: 0,
+            lifes: 2,
+            score:0,
+        }
+        this.setState({player: resetPlayer})
+
         if (this.state.renderNamePanel === true){
             //Start Game
-            this.setState({renderNamePanel: false})
+            this.setState({
+                renderNamePanel: false
+            })
             this.handleCardPlayerUnmount()
             this.handleCardOpponentUnmount()
         }else if(this.state.renderNamePanel === false){
@@ -235,6 +250,14 @@ class BattleGround extends Component{
                     }
                 }else{
                     console.log("GAME OVER!!")
+                    let copyPlayerFinal = this.state.player;
+                    let body = {
+                        name: copyPlayerFinal.name,
+                        score: copyPlayerFinal.score,
+                    }
+                    axios.post('/api/leaderboard' , body)
+                    .then(()=>(console.log("Axios posted")))
+                    .catch((err)=>(console.log(err)))
                     this.handleLeaderBoardUnmount();
                 }
             },500) 
