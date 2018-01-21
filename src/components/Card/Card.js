@@ -19,7 +19,7 @@ class Card extends Component{
                     <p>Attack Power: {this.props.attack}</p>
                     <p>Health: {this.props.health}</p>
                 </div>
-                <button onClick={this.props.triggerParentUpdate}>Attack</button>
+                <button onClick={this.props.attackButton}>Attack</button>
             </div>
         )
     }
