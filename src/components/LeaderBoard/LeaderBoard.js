@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import './Card.css';
+import './LeaderBoard.css';
 
-class Card extends Component{
+class LeaderBoard extends Component{
     //constructor(){}
     dismiss(){
         this.props.unmountMe();
@@ -9,11 +9,11 @@ class Card extends Component{
 
     render(){
         return(
-            <div className='Card'>
-                Card
+            <div className='LeaderBoard'>
+                LeaderBoard
             </div>
         )
     }
 }
 
-export default Card;
+export default LeaderBoard;

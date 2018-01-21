@@ -1,0 +1,33 @@
+.BattleGround{
+    background: red;
+    width: 800;
+    height: 580px;
+    
+    display: flex;
+    flex-flow: column;
+}
+.TopBar{
+    background: rgb(173, 164, 164);
+    width: 800px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Table{
+    background: rgb(102, 100, 100);
+    width: 800px;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.BotBar{
+    background: rgb(122, 86, 86);
+    width: 800px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
