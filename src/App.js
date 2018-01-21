@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import BattleGround from './components/BattleGround/BattleGround'
+import Parent from './playground/Parent'
 
 class App extends Component {
   
@@ -8,6 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <BattleGround />
+        {/* <Parent /> */}
       </div>
     );
   }
