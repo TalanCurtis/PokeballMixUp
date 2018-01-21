@@ -83,7 +83,7 @@ class BattleGround extends Component{
                 }
             }
             // testing changes attack health
-            copy.attack = 3;
+            copy.attack = 60;
             copy.health = 2;
             copy.pokemonName= res.data.forms[0].name
             copy.image= res.data.sprites.front_default
@@ -212,13 +212,14 @@ class BattleGround extends Component{
             // testing changes too
             copy.attack = 3;
             copy.health = 3;
-            copy.pokemonName= res.data.forms[0].name
-            copy.image= res.data.sprites.front_default
+            copy.pokemonName= res.data.forms[0].name;
+            copy.image= res.data.sprites.front_default;
+            copy.lifes --;
             this.setState({
                 player: copy,
-                renderCardPlayer: true
             })
         })
+        this.setState({ renderCardPlayer: true})
     }
 
     handleChange(val){
@@ -236,58 +237,20 @@ class BattleGround extends Component{
         this.setState({opponent:copyOpp})
         if(copyOpp.health<=0){
             setTimeout(this.handleNextOpponent,1000)
-        }
-        if(copyOpp.health>0){
+        }else if(copyOpp.health>0){
             setTimeout(()=>{
-                copyPlayer.health-= copyOpp.attack 
-                this.setState({player: copyPlayer})
-            },1000) 
+                if(copyPlayer.lifes>0){
+                    copyPlayer.health-= copyOpp.attack 
+                    if(copyPlayer.health<=0){
+                        this.handleNextPlayerPokeball()
+                    }
+                }else{
+                    console.log("GAME OVER!!")
+                    this.handleLeaderBoardUnmount();
+                }
+            },500) 
         }
-        if (copyPlayer.health<=0){
-            console.log('change pokemon')
-        }
-
-        /////ZZZZ//////////////////////////
-        // if(copyPlayer.lifes>=0){
-        //     copyPlayer.lifes = copyPlayer.lifes -1;
-        //     copyPlayer = Object.assign({}, copyPlayer)
-        //     this.setState({player: copyPlayer})
-        //     // this.handleNextPlayerPokeball
-        //         console.log('next pokeball, yikes!')
-        //         this.setState({renderCardPlayer:false})
-        //         let copy = Object.assign({}, this.state.player)
-        //         let attack = 0,
-        //             health = 0,
-        //             pokemonName="",
-        //             pokeId=Math.floor(Math.random()*400+1),
-        //             image=""
-        
-        //             ///
-        //             axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
-        //             .then( res => {
-        //             console.log(res);
-        //             for (let index in res.data.stats){
-        //                 //console.log(res.data.stats[index].stat.name)
-        //                 if(res.data.stats[index].stat.name === "attack"){
-        //                     //console.log(res.data.stats[index].base_stat)
-        //                     attack = res.data.stats[index].base_stat
-        //                 }else if(res.data.stats[index].stat.name === "hp"){
-        //                     health = res.data.stats[index].base_stat
-        //                 }
-        //             }
-        //             // testing changes too
-        //             copy.attack = 3;
-        //             copy.health = 3;
-        //             copy.pokemonName= res.data.forms[0].name
-        //             copy.image= res.data.sprites.front_default
-        //             this.setState({
-        //                 player: copy,
-        //                 renderCardPlayer: true
-        //             })
-        //         })
-            
-        //     this.setState({player:copyPlayer})
-        // }
+        console.log('Looging', copyPlayer)
     }
 
     render(){
@@ -300,11 +263,14 @@ class BattleGround extends Component{
                 </div>
                 <div className="Table">
                     {this.state.renderNamePanel?<div>
-                        <div>Hey kid wake up! whats your name?
+                        <div className="Intro">
+                            <h1> Pokeball Mixup!!! </h1>
+                            <p>Hey kid wake up! whats your name?
                             <input 
                                 placeholder="Enter name"
                                 onChange={(e)=> this.handleChange(e.target.value)}
                             ></input>
+                            </p>
                         </div>
                         <NamePanel 
                         unmountMe={this.handleNamePanelUnmount}
@@ -332,12 +298,11 @@ class BattleGround extends Component{
                 </div>
                 <div className="BotBar">
                     <p>lifes left: {this.state.player.lifes}</p>
-                    <button onClick={this.handleNamePanelUnmount}>TestName</button>
-                    <input placeholder="change name" onChange={(e)=> this.handleChange(e.target.value)}></input>
-                    <button onClick={this.changeName}  >TestChangeName </button>
+                    <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
+                    {/* <input placeholder="change name" onChange={(e)=> this.handleChange(e.target.value)}></input> */}
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
-                    <button onClick={this.handleCardPlayerUnmount}>TestPlayer</button>
-                    <button onClick={this.handleCardOpponentUnmount}>TestOpp</button>
+                    {/* <button onClick={this.handleCardPlayerUnmount}>TestPlayer</button>
+                    <button onClick={this.handleCardOpponentUnmount}>TestOpp</button> */}
                 </div>
 
             </div>

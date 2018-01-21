@@ -31,3 +31,13 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.Intro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Intro h1{
+    font-size: 200%;
+}
