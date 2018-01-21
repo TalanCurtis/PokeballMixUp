@@ -34,9 +34,11 @@ class NamePanel extends Component{
     render(){
         return(
             <div className='NamePanel'>
+                <div className="Spacer"></div>
                 <p>You got knocked in head before your big poke match! </p>
                 <p>You cant remember what pokemon is it what ball!!!! </p>
                 <p>Good luck!</p>
+                <div className="Spacer"></div>
                 <div>
                     {/* <input placeholder="Name" onChange={(e)=> this.handleChange(e.target.value)}></input> */}
                     {/* <button onClick={this.handleSubmitPlayer}>Start</button> */}
