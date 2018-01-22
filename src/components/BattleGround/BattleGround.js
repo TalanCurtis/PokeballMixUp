@@ -265,11 +265,12 @@ class BattleGround extends Component{
         copyOpp.health-=copyPlayer.attack 
         this.setState({opponent:copyOpp})
         if(copyOpp.health<=0){
-            setTimeout(this.handleNextOpponent,1000)
+            setTimeout(this.handleNextOpponent,500)
         }else if(copyOpp.health>0){
             setTimeout(()=>{
                 if(copyPlayer.lives>0){
                     copyPlayer.health-= copyOpp.attack 
+                    this.setState({player:copyPlayer})
                     if(copyPlayer.health<=0){
                         this.handleNextPlayerPokeball()
                     }
