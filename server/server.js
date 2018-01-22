@@ -34,18 +34,14 @@ app.put( leaderBoardBaseUrl,(req, res)=>{
     res.status(200).send(leaderBoard)
 })
 
-/// Todo Get this delete working
-app.delete( leaderBoardBaseUrl, (req,res)=>{
-    console.log("Deleeting from leaderbosards")
-    //let idToDelete = params
-    //console.log(idToDelete)
-    // leaderBoard = leaderBoard.findIndex((player)=>(player.id == idToDelete))
-    // leaderBoard.splice(idToDelete, 1)
-    // console.log(leaderBoard)
-    console.log("I need ID!!!", req.params.id)
+app.delete( leaderBoardBaseUrl+'/:id', (req, res)=>{
+    console.log('delete endpoint hit on server.')
+    let idToDelete = req.params.id*1;
+    console.log('id to delete = ',idToDelete)
+    leaderBoard.splice(idToDelete, 1)
+    console.log('leaderboard = ', leaderBoard)
     res.status(200).send(leaderBoard)
 })
-
 
 app.listen(port, ()=>{
     console.log(`listening on port:${port}`)

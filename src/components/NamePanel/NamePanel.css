@@ -20,3 +20,6 @@
     box-shadow: 2px 2px 2px rgb(1, 22, 1)
     
 }
+.NamePanel p{
+    font-weight: 600;
+}

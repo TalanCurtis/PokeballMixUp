@@ -47,15 +47,12 @@ class LeaderBoard extends Component{
     }
     deletePlayer(){
         let id = this.state.idToUpdate*1
-        console.log('delete player', id)
-        // let id = this.state.idToUpdate*1
-        axios.delete(`/api/leaderboard/?id=${id}`)
+        console.log('request send delete id =', id)
+        axios.delete(`/api/leaderboard/${id}`)
         .then(res=>{
-            console.log("Hi there", res)
+            console.log("Made it back to client", res.data)
+            this.setState({leaderBoard:res.data})
         })
-        // .then((res) =>{
-        //     this.setState({leaderBoard:res.data})
-        // })
     }
 
     render(){
@@ -65,7 +62,7 @@ class LeaderBoard extends Component{
                 <h1>Leader Boards!!!</h1>
                 {this.state.leaderBoard.map( playerStat => (
                     <div className="scoreDisp" key={playerStat.id}>
-                        <span > ({place++})  {playerStat.name} | Score: {playerStat.score}</span>
+                        <span > {place++}.  {playerStat.name} | Score: {playerStat.score}</span>
                     </div>
                 ))}
                 <div className="Spacer"></div>

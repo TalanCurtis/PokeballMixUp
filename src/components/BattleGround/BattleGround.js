@@ -16,7 +16,7 @@ class BattleGround extends Component{
             player:{
                 name:"???",
                 pokeId:0,
-                pokemonName:"",
+                pokemonName:"...",
                 image: PokeballImg,
                 health: 0,
                 attack: 0,
@@ -27,7 +27,7 @@ class BattleGround extends Component{
             opponent: {
                 name:"Ziggy Stardust",
                 pokeId:"",
-                pokemonName:"",
+                pokemonName:"...",
                 image: PokeballImg,
                 health:0,
                 attack:0,
@@ -51,7 +51,7 @@ class BattleGround extends Component{
         let resetPlayer={
             name:"",
             pokeId:0,
-            pokemonName:"",
+            pokemonName:"...",
             image: PokeballImg,
             health: 0,
             attack: 0,

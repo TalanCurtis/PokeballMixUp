@@ -4,3 +4,9 @@
  - find out how to unmount component and mount a new one.
  - create  user: id, name, score,
  - set up crud create, read, update, delete. 
+
+
+ css animation property change color
+ - inline styling 
+ -background color.
+ -try changing color on button click. like attack
