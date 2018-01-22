@@ -5,6 +5,7 @@ import Card from '../Card/Card'
 import NamePanel from '../NamePanel/NamePanel'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
 import TitleScreenImage from '../../images/TitleScreen.jpg'
+import SelfMotivateButton from '../Buttons/SelfMotivateButton'
 
 class BattleGround extends Component{
     constructor(props){
@@ -315,6 +316,10 @@ class BattleGround extends Component{
                 </div>
                 <div className="BotBar">
                     <p className="Lives">lives left: {this.state.player.lives}</p>
+                    <p>self motivation buttons:</p>
+                    <SelfMotivateButton num="1" string="Go for it" name={this.state.player.name}></SelfMotivateButton>
+                    <SelfMotivateButton num="2" string="You can do it " name={this.state.player.name}></SelfMotivateButton>
+                    <SelfMotivateButton num="3" string="Hang in there" name={this.state.player.name}></SelfMotivateButton>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
                 </div>
