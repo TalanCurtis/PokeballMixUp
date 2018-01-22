@@ -300,7 +300,8 @@ class BattleGround extends Component{
                     {this.state.renderNamePanel?<div>
                         <div className="Intro">
                             <img className='TitleScreenImage' alt="" src={TitleScreenImage}></img>
-                            <p>Hey kid wake up! whats your name?
+                            <div className='Spacer'></div>
+                            <p>Hey kid wake up! whats your name? 
                             <input 
                                 placeholder="Enter name"
                                 onChange={(e)=> this.handleChange(e.target.value)}
@@ -336,7 +337,7 @@ class BattleGround extends Component{
                 </div>
                 <div className="BotBar">
                     <p className="Lives">lives left: {this.state.player.lives}</p>
-                    <p>self motivation buttons:</p>
+                    <p>Self Motivate:</p>
                     <SelfMotivateButton num="1" string="Go for it" name={this.state.player.name}></SelfMotivateButton>
                     <SelfMotivateButton num="2" string="You can do it " name={this.state.player.name}></SelfMotivateButton>
                     <SelfMotivateButton num="3" string="Hang in there" name={this.state.player.name}></SelfMotivateButton>
