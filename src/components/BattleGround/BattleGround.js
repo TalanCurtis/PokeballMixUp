@@ -20,8 +20,8 @@ class BattleGround extends Component{
                 image: PokeballImg,
                 health: 0,
                 attack: 0,
-                lives: 2,
-                score:0,
+                lives: 0,
+                score:1,
                 id: 0,
             },
             opponent: {
@@ -32,6 +32,8 @@ class BattleGround extends Component{
                 health:0,
                 attack:0,
             },
+            playerBG: 'transparent',
+            oppBG: 'transparent',
             backgroundColor: 'transparent',
             renderCardPlayer: false,
             renderCardOpponent: false,
@@ -103,8 +105,8 @@ class BattleGround extends Component{
                 }
             }
             // testing changes attack health
-            copy.attack = attack;
-            copy.health = health;
+            copy.attack = 0;
+            copy.health = 3;
             copy.pokemonName= res.data.forms[0].name
             copy.image= res.data.sprites.front_default
             this.setState({
@@ -263,7 +265,12 @@ class BattleGround extends Component{
         let copyPlayer = Object.assign({}, this.state.player)
         let copyOpp = Object.assign({}, this.state.opponent)
         //console.log(copyPlayer)
-        copyOpp.health-=copyPlayer.attack 
+        copyOpp.health-=copyPlayer.attack
+        // Change color of text when you hits opp
+        this.setState({oppBG: 'red'})
+        setTimeout(()=>{
+            this.setState({oppBG: 'transparent'})
+        },1000)
         this.setState({opponent:copyOpp})
         if(copyOpp.health<=0){
             setTimeout(this.handleNextOpponent,500)
@@ -271,6 +278,12 @@ class BattleGround extends Component{
             setTimeout(()=>{
                 if(copyPlayer.lives>0){
                     copyPlayer.health-= copyOpp.attack 
+                    // Change color of text when enemy hits you
+                    this.setState({playerBG: 'red'})
+                    setTimeout(()=>{
+                        this.setState({playerBG: 'transparent'})
+                    },1000)
+                    ////////////
                     this.setState({player:copyPlayer})
                     if(copyPlayer.health<=0){
                         this.handleNextPlayerPokeball()
@@ -298,10 +311,10 @@ class BattleGround extends Component{
     }
     changeColor(){
         console.log('change color')
-        this.setState({backgroundColor: 'purple'})
+        this.setState({oppBG: 'red'})
 
         setTimeout(()=>{
-            this.setState({backgroundColor: 'transparent'})
+            this.setState({oppBG: 'transparent'})
         },1000)
     }
 
@@ -332,8 +345,10 @@ class BattleGround extends Component{
                     {this.state.renderLeaderBoard?<LeaderBoard 
                         unmountMe={this.handleLeaderBoardUnmount}
                         id={this.state.player.id}
+                        score={this.state.player.score}
                     />: null}
                     {this.state.renderCardPlayer?<Card 
+                        changeColor={this.state.playerBG}
                         define='player'
                         unmountMe={this.handleCardPlayerUnmount}
                         pokemonName={this.state.player.pokemonName}
@@ -344,6 +359,7 @@ class BattleGround extends Component{
                         attackButton={this.handleAttack}
                         />: null}
                     {this.state.renderCardOpponent?<Card 
+                        changeColor={this.state.oppBG}
                         define="opp"
                         unmountMe={this.handleCardOpponentUnmount}
                         pokemonName={this.state.opponent.pokemonName}
@@ -361,16 +377,16 @@ class BattleGround extends Component{
                     <SelfMotivateButton num="3" string="Hang in there" name={this.state.player.name}></SelfMotivateButton>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
-                    <button className="changeColorButton" onClick={this.changeColor}>Change Color</button>
-                    <p 
-                        className="textToChange"
-                        style={{backgroundColor:this.state.backgroundColor}}
-                    >Change Me!</p>
                 </div>
-
             </div>
         )
     }
 }
+
+                    /* <button className="changeColorButton" onClick={this.changeColor}>Change Color</button>
+                    <p 
+                        className="textToChange"
+                        style={{backgroundColor:this.state.backgroundColor}}
+                    >Change Me!</p> */
 
 export default BattleGround;

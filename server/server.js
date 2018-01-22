@@ -18,6 +18,7 @@ app.post( leaderBoardBaseUrl, (req, res)=>{
     console.log(req.body)
     let body = req.body
     body.id = id++
+    console.log(body)
     leaderBoard.push(body)
     leaderBoard = leaderBoard.sort((p1, p2)=>p2.score>p1.score)
     res.status(200).send(body)
@@ -36,11 +37,14 @@ app.put( leaderBoardBaseUrl,(req, res)=>{
 })
 
 app.delete( leaderBoardBaseUrl+'/:id', (req, res)=>{
-    console.log('delete endpoint hit on server.')
+    //console.log('delete endpoint hit on server.')
     let idToDelete = req.params.id*1;
     console.log('id to delete = ',idToDelete)
-    leaderBoard.splice(idToDelete, 1)
-    console.log('leaderboard = ', leaderBoard)
+    let index = leaderBoard.findIndex(item=> item.id===idToDelete)
+    console.log("this is the index",index)
+    leaderBoard.splice(index, 1)
+    //console.log('leaderboard = ', leaderBoard)
+    leaderBoard = leaderBoard.sort((p1, p2)=>p2.score>p1.score)
     res.status(200).send(leaderBoard)
 })
 

@@ -29,9 +29,11 @@ class LeaderBoard extends Component{
     changeName(){
         console.log("Changing Name")
         let id = this.props.id,
-            name = this.state.nameUpdate
+            name = this.state.nameUpdate,
+            score= this.props.score
             console.log(id)
-        let body= {id:id, name: name, score: 2}
+        let body= {id:id, name: name, score: score}
+        console.log("put req", body)
         axios.put('/api/leaderboard/', body)
         .then((res)=>{
             this.setState({leaderBoard:res.data})
@@ -61,7 +63,7 @@ class LeaderBoard extends Component{
             <div className='LeaderBoard'>
                 <h1>Leader Boards!!!</h1>
                 {this.state.leaderBoard.map( playerStat => (
-                    <div className="scoreDisp" key={playerStat.id}>
+                    <div className="scoreDisp" key={place}>
                         <span > {place++}.  {playerStat.name} | Score: {playerStat.score}</span>
                     </div>
                 ))}
