@@ -22,7 +22,7 @@ class BattleGround extends Component{
                 attack: 0,
                 lives: 2,
                 score:0,
-                playerId:0,
+                id: 0,
             },
             opponent: {
                 name:"Ziggy Stardust",
@@ -51,7 +51,7 @@ class BattleGround extends Component{
     handleNamePanelUnmount(){
         // reset player stats
         let resetPlayer={
-            name:"",
+            name:"???",
             pokeId:0,
             pokemonName:"...",
             image: PokeballImg,
@@ -59,6 +59,7 @@ class BattleGround extends Component{
             attack: 0,
             lives: 2,
             score:0,
+            id:0
         }
         this.setState({player: resetPlayer})
 
@@ -282,7 +283,12 @@ class BattleGround extends Component{
                         score: copyPlayerFinal.score,
                     }
                     axios.post('/api/leaderboard' , body)
-                    .then(()=>(console.log("Axios posted")))
+                    .then((res)=>{
+                        console.log("got this back", res.data)
+                        let copyPlayer = Object.assign({}, this.state.player)
+                        copyPlayer.id = res.data.id
+                        this.setState({player:copyPlayer})
+                    })
                     .catch((err)=>(console.log(err)))
                     this.handleLeaderBoardUnmount();
                 }
@@ -325,7 +331,7 @@ class BattleGround extends Component{
                     /></div>: null}
                     {this.state.renderLeaderBoard?<LeaderBoard 
                         unmountMe={this.handleLeaderBoardUnmount}
-                        playerId={this.state.player.playerId}
+                        id={this.state.player.id}
                     />: null}
                     {this.state.renderCardPlayer?<Card 
                         define='player'

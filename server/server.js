@@ -16,10 +16,11 @@ app.get( leaderBoardBaseUrl, (req, res)=>{
 
 app.post( leaderBoardBaseUrl, (req, res)=>{
     console.log(req.body)
-    req.body.id = id++
-    leaderBoard.push(req.body)
+    let body = req.body
+    body.id = id++
+    leaderBoard.push(body)
     leaderBoard = leaderBoard.sort((p1, p2)=>p2.score>p1.score)
-    res.status(200).send("Added new Player!")
+    res.status(200).send(body)
 });
 
 app.put( leaderBoardBaseUrl,(req, res)=>{

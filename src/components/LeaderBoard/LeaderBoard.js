@@ -7,7 +7,6 @@ class LeaderBoard extends Component{
         super(props);
         this.state={
             leaderBoard:[],
-            idToUpdate:0,
             nameUpdate:""
         }
         this.handleChangeId = this.handleChangeId.bind(this)
@@ -29,8 +28,9 @@ class LeaderBoard extends Component{
     
     changeName(){
         console.log("Changing Name")
-        let id = this.state.idToUpdate*1,
+        let id = this.props.id,
             name = this.state.nameUpdate
+            console.log(id)
         let body= {id:id, name: name, score: 2}
         axios.put('/api/leaderboard/', body)
         .then((res)=>{
@@ -46,7 +46,7 @@ class LeaderBoard extends Component{
         this.setState({idToUpdate: val})
     }
     deletePlayer(){
-        let id = this.state.idToUpdate*1
+        let id = this.props.id
         console.log('request send delete id =', id)
         axios.delete(`/api/leaderboard/${id}`)
         .then(res=>{
@@ -68,12 +68,6 @@ class LeaderBoard extends Component{
                 <div className="Spacer"></div>
                 <p>Do you want to change your a name?</p>
                 <input 
-                    type="number"
-                    placeholder="enter id"
-                    onChange={(e)=> this.handleChangeId(e.target.value)}
-                ></input>
-                <p>my id {this.props.playerId}</p>
-                <input 
                     placeholder="Enter new name"
                     onChange={(e)=> this.handleChangeName(e.target.value)}
                 ></input>
@@ -85,5 +79,6 @@ class LeaderBoard extends Component{
         )
     }
 }
+
 
 export default LeaderBoard;
