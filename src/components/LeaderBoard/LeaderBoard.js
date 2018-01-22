@@ -59,12 +59,13 @@ class LeaderBoard extends Component{
     }
 
     render(){
+        let place=1;
         return(
             <div className='LeaderBoard'>
                 <h1>Leader Boards!!!</h1>
                 {this.state.leaderBoard.map( playerStat => (
-                    <div key={playerStat.id}>
-                        <span > Name:  {playerStat.name} | Score: {playerStat.score}</span>
+                    <div className="scoreDisp" key={playerStat.id}>
+                        <span > ({place++})  {playerStat.name} | Score: {playerStat.score}</span>
                     </div>
                 ))}
                 <div className="Spacer"></div>

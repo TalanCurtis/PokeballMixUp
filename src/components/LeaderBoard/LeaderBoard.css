@@ -1,9 +1,24 @@
 .LeaderBoard{
-    background: purple;
+    background: #EE4025;
     height: 500px;
     width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 2px solid black;
+}
+.LeaderBoard p, span{
+    color: white;
+    font-weight: 600;
+}
+.LeaderBoard h1{
+    color: rgb(26, 26, 207);
+    font-weight: 600;
+    font-size: 200%
+}
+
+.scoreDisp {
+    display: flex;
+    justify-content: flex-start;
 }
