@@ -1,11 +1,10 @@
 import React, { Component} from 'react';
 import './NamePanel.css';
-import axios  from 'axios';
 
 class NamePanel extends Component{
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     dismiss(){
         this.props.unmountMe();
     } 

@@ -7,6 +7,7 @@ import LeaderBoard from '../LeaderBoard/LeaderBoard'
 import TitleScreenImage from '../../images/TitleScreen.jpg'
 import Yoda from '../../images/YODA.gif'
 import SelfMotivateButton from '../Buttons/SelfMotivateButton'
+import PokeballImg from '../../images/Pokeball.png'
 
 class BattleGround extends Component{
     constructor(props){
@@ -15,8 +16,8 @@ class BattleGround extends Component{
             player:{
                 name:"???",
                 pokeId:0,
-                pokemonName:"placeholder name",
-                image:"",
+                pokemonName:"",
+                image: PokeballImg,
                 health: 0,
                 attack: 0,
                 lives: 2,
@@ -26,8 +27,8 @@ class BattleGround extends Component{
             opponent: {
                 name:"Ziggy Stardust",
                 pokeId:"",
-                pokemonName:" opp placholder name",
-                image:"opp placeholder image",
+                pokemonName:"",
+                image: PokeballImg,
                 health:0,
                 attack:0,
             },
@@ -50,8 +51,8 @@ class BattleGround extends Component{
         let resetPlayer={
             name:"",
             pokeId:0,
-            pokemonName:"placeholder name",
-            image:"placeholder image",
+            pokemonName:"",
+            image: PokeballImg,
             health: 0,
             attack: 0,
             lives: 2,
@@ -82,13 +83,13 @@ class BattleGround extends Component{
             let copy = Object.assign({}, this.state.player)
             let attack = 0,
                 health = 0,
-                pokemonName="",
-                pokeId=Math.floor(Math.random()*400+1),
-                image=""
+                // pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1)
+                // image=""
 
             axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
             .then( res => {
-            console.log(res);
+            //console.log(res);
             for (let index in res.data.stats){
                 //console.log(res.data.stats[index].stat.name)
                 if(res.data.stats[index].stat.name === "attack"){
@@ -117,13 +118,13 @@ class BattleGround extends Component{
             let copy = Object.assign({}, this.state.opponent)
             let attack = 0,
                 health = 0,
-                pokemonName="",
-                pokeId=Math.floor(Math.random()*400+1),
-                image=""
+                // pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1)
+                // image=""
 
             axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
             .then( res => {
-            console.log(res);
+            //console.log(res);
             for (let index in res.data.stats){
                 //console.log(res.data.stats[index].stat.name)
                 if(res.data.stats[index].stat.name === "attack"){
@@ -166,14 +167,14 @@ class BattleGround extends Component{
             let copy = Object.assign({}, this.state.opponent)
             let attack = 0,
                 health = 0,
-                pokemonName="",
-                pokeId=Math.floor(Math.random()*400+1),
-                image=""
+                // pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1)
+                // image=""
 
                 ///
                 axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
                 .then( res => {
-                console.log(res);
+                //console.log(res);
                 for (let index in res.data.stats){
                     //console.log(res.data.stats[index].stat.name)
                     if(res.data.stats[index].stat.name === "attack"){
@@ -198,7 +199,7 @@ class BattleGround extends Component{
         }else{
             axios.get(`http://swapi.co/api/people/20`)
             .then(res=>{
-                console.log(res.data.name)
+                //console.log(res.data.name)
                 alert("Whats this! A strange pokeball falls from the sky only to open up and reveal.....")
                 this.setState({
                     opponent: {
@@ -219,14 +220,14 @@ class BattleGround extends Component{
         let copy = Object.assign({}, this.state.player)
         let attack = 0,
             health = 0,
-            pokemonName="",
-            pokeId=Math.floor(Math.random()*400+1),
-            image=""
+            // pokemonName="",
+            pokeId=Math.floor(Math.random()*400+1)
+            // image=""
 
             ///
             axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
             .then( res => {
-            console.log(res);
+            //console.log(res);
             for (let index in res.data.stats){
                 //console.log(res.data.stats[index].stat.name)
                 if(res.data.stats[index].stat.name === "attack"){
@@ -258,7 +259,7 @@ class BattleGround extends Component{
     handleAttack(){
         let copyPlayer = Object.assign({}, this.state.player)
         let copyOpp = Object.assign({}, this.state.opponent)
-        console.log(copyPlayer)
+        //console.log(copyPlayer)
         copyOpp.health-=copyPlayer.attack 
         this.setState({opponent:copyOpp})
         if(copyOpp.health<=0){
@@ -284,7 +285,7 @@ class BattleGround extends Component{
                 }
             },500) 
         }
-        console.log('Looging', copyPlayer)
+        //console.log('Looging', copyPlayer)
     }
 
     render(){
@@ -298,7 +299,7 @@ class BattleGround extends Component{
                 <div className="Table">
                     {this.state.renderNamePanel?<div>
                         <div className="Intro">
-                            <img className='TitleScreenImage' src={TitleScreenImage}></img>
+                            <img className='TitleScreenImage' alt="" src={TitleScreenImage}></img>
                             <p>Hey kid wake up! whats your name?
                             <input 
                                 placeholder="Enter name"

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 class LeaderBoard extends Component{
     constructor(props){
-        super(props),
+        super(props);
         this.state={
             leaderBoard:[],
             idToUpdate:0,
