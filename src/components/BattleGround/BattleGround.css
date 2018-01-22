@@ -1,5 +1,6 @@
+
 .BattleGround{
-    background: red;
+    /* background: red; */
     width: 800;
     height: 580px;
     
@@ -7,16 +8,17 @@
     flex-flow: column;
 }
 .TopBar{
-    background: rgb(173, 164, 164);
+    background: #EE4025;
     width: 800px;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border: 2px solid black;
 }
 
 .Table{
-    background: rgb(102, 100, 100);
+    background: #7AA85D;
     width: 800px;
     height: 500px;
     display: flex;
@@ -24,12 +26,18 @@
     align-items: center;
 }
 .BotBar{
-    background: rgb(122, 86, 86);
+    background: #EE4025;
     width: 800px;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border: 2px solid black;
+}
+
+.TitleScreenImage{
+    height: 310px;
+    border: 2px solid black;
 }
 
 .Intro{

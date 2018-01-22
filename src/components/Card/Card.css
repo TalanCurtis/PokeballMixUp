@@ -1,16 +1,21 @@
 .Card{
-    background-color: blue;
-    height: 500px;
+    background-color: #207BC0;
+    height: 450px;
     width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgb(29, 65, 92)
 }
 .Picture{
-    background: red;
+    background: rgb(129, 161, 185);
     height: 200px;
     width: 200px;
+    border: 2px solid black;
+    margin: 20px
 }
 .PlayerName{
     color: white;
@@ -18,7 +23,9 @@
 }
 .PokemonName{
     color: white;
-    font-weight: bolder;
+    font-weight: 200;
+    font-size: 200%;
+    text-transform: capitalize;
 }
 
 
@@ -30,4 +37,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 2px solid black;
+    margin: 10px;
 }

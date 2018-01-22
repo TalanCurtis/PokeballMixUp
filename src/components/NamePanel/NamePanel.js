@@ -19,8 +19,6 @@ class NamePanel extends Component{
                 <p>Good luck!</p>
                 <div className="Spacer"></div>
                 <div>
-                    {/* <input placeholder="Name" onChange={(e)=> this.handleChange(e.target.value)}></input> */}
-                    {/* <button onClick={this.handleSubmitPlayer}>Start</button> */}
                     <button onClick={this.props.start}>Start</button>
                 </div>
             </div>

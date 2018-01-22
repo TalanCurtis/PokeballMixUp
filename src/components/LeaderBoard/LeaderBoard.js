@@ -48,7 +48,7 @@ class LeaderBoard extends Component{
     deletePlayer(){
         console.log('delete player')
         let id = this.state.idToUpdate*1
-        axios.delete('/api/leaderboard/', {id:id})
+        axios.delete('/api/leaderboard/'+`?${id}`)
         .then((res) =>{
             this.setState({leaderBoard:res.data})
         })

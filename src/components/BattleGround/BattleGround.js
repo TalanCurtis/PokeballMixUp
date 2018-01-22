@@ -4,24 +4,25 @@ import axios from 'axios';
 import Card from '../Card/Card'
 import NamePanel from '../NamePanel/NamePanel'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
+import TitleScreenImage from '../../images/TitleScreen.jpg'
 
 class BattleGround extends Component{
     constructor(props){
         super(props);
         this.state={
             player:{
-                name:"",
+                name:"???",
                 pokeId:0,
                 pokemonName:"placeholder name",
                 image:"",
                 health: 0,
                 attack: 0,
-                lifes: 2,
+                lives: 2,
                 score:0,
                 playerId:0,
             },
             opponent: {
-                name:"",
+                name:"Ziggy Stardust",
                 pokeId:"",
                 pokemonName:" opp placholder name",
                 image:"opp placeholder image",
@@ -51,7 +52,7 @@ class BattleGround extends Component{
             image:"placeholder image",
             health: 0,
             attack: 0,
-            lifes: 2,
+            lives: 2,
             score:0,
         }
         this.setState({player: resetPlayer})
@@ -220,7 +221,7 @@ class BattleGround extends Component{
             copy.health = 3;
             copy.pokemonName= res.data.forms[0].name;
             copy.image= res.data.sprites.front_default;
-            copy.lifes --;
+            copy.lives --;
             this.setState({
                 player: copy,
             })
@@ -244,7 +245,7 @@ class BattleGround extends Component{
             setTimeout(this.handleNextOpponent,1000)
         }else if(copyOpp.health>0){
             setTimeout(()=>{
-                if(copyPlayer.lifes>0){
+                if(copyPlayer.lives>0){
                     copyPlayer.health-= copyOpp.attack 
                     if(copyPlayer.health<=0){
                         this.handleNextPlayerPokeball()
@@ -272,12 +273,13 @@ class BattleGround extends Component{
                 <div className="TopBar">
                     <div className="PlayerName">{this.state.player.name}</div>
                     <div className="OpponentsBeat">Opponents Beat {this.state.player.score}</div>
-                    <div className="OpponentName">OpponentName</div>
+                    <div className="OpponentName">Opponent: {this.state.opponent.name}</div>
                 </div>
                 <div className="Table">
                     {this.state.renderNamePanel?<div>
                         <div className="Intro">
-                            <h1> Pokeball Mixup!!! </h1>
+                            <img className='TitleScreenImage' src={TitleScreenImage}></img>
+                            {/* <h1> Pokeball Mixup!!! </h1> */}
                             <p>Hey kid wake up! whats your name?
                             <input 
                                 placeholder="Enter name"
@@ -313,7 +315,7 @@ class BattleGround extends Component{
                     />: null}
                 </div>
                 <div className="BotBar">
-                    <p>lifes left: {this.state.player.lifes}</p>
+                    <p>lives left: {this.state.player.lives}</p>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
                 </div>
