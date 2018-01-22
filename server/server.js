@@ -34,12 +34,13 @@ app.put( leaderBoardBaseUrl,(req, res)=>{
 /// Todo Get this delete working
 app.delete( leaderBoardBaseUrl, (req,res)=>{
     console.log("Deleeting from leaderbosards")
-    let idToDelete = params
-    console.log(idToDelete)
+    //let idToDelete = params
+    //console.log(idToDelete)
     // leaderBoard = leaderBoard.findIndex((player)=>(player.id == idToDelete))
     // leaderBoard.splice(idToDelete, 1)
     // console.log(leaderBoard)
-    res.status(200).send(req)
+    console.log("I need ID!!!", req.params.id)
+    res.status(200).send(leaderBoard)
 })
 
 
