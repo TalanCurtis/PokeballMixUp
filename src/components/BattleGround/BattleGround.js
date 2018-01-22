@@ -32,6 +32,7 @@ class BattleGround extends Component{
                 health:0,
                 attack:0,
             },
+            backgroundColor: 'transparent',
             renderCardPlayer: false,
             renderCardOpponent: false,
             renderLeaderBoard: false,
@@ -43,6 +44,7 @@ class BattleGround extends Component{
         this.handleCardOpponentUnmount = this.handleCardOpponentUnmount.bind(this)
         this.handleAttack = this.handleAttack.bind(this)
         this.handleNextOpponent = this.handleNextOpponent.bind(this)
+        this.changeColor = this.changeColor.bind(this)
     }
 
 /// Handerlers controller flow and components being displayed
@@ -287,6 +289,14 @@ class BattleGround extends Component{
         }
         //console.log('Looging', copyPlayer)
     }
+    changeColor(){
+        console.log('change color')
+        this.setState({backgroundColor: 'purple'})
+
+        setTimeout(()=>{
+            this.setState({backgroundColor: 'transparent'})
+        },1000)
+    }
 
     render(){
         return(
@@ -317,7 +327,7 @@ class BattleGround extends Component{
                         playerId={this.state.player.playerId}
                     />: null}
                     {this.state.renderCardPlayer?<Card 
-                        ref="player" 
+                        define='player'
                         unmountMe={this.handleCardPlayerUnmount}
                         pokemonName={this.state.player.pokemonName}
                         image={this.state.player.image}
@@ -327,6 +337,7 @@ class BattleGround extends Component{
                         attackButton={this.handleAttack}
                         />: null}
                     {this.state.renderCardOpponent?<Card 
+                        define="opp"
                         unmountMe={this.handleCardOpponentUnmount}
                         pokemonName={this.state.opponent.pokemonName}
                         image={this.state.opponent.image}
@@ -343,6 +354,11 @@ class BattleGround extends Component{
                     <SelfMotivateButton num="3" string="Hang in there" name={this.state.player.name}></SelfMotivateButton>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
+                    <button className="changeColorButton" onClick={this.changeColor}>Change Color</button>
+                    <p 
+                        className="textToChange"
+                        style={{backgroundColor:this.state.backgroundColor}}
+                    >Change Me!</p>
                 </div>
 
             </div>

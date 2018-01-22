@@ -8,5 +8,10 @@
 
  css animation property change color
  - inline styling 
- -background color.
- -try changing color on button click. like attack
+ - background color.
+ - try changing color on button click. like attack
+ - research css transitions. fade on fade off.
+
+ - remove index chooser from leaderboards.
+ - change delete to delete current player.
+ - change name update current player

@@ -1,27 +1,24 @@
-import React, { Component} from 'react';
+import React from 'react';
 import './Card.css';
 
-class Card extends Component{
-    // constructor(props){
-    //     super(props)
-    // }
-    dismiss(){
-        this.props.unmountMe();
-    }
+function Card (props){
 
-    render(){
         return(
             <div className='Card'>
-                <div className='PokemonName'>{this.props.pokemonName}</div>
-                <img className='Picture' src={this.props.image} alt=""></img>
+                <div className='PokemonName'>{props.pokemonName}</div>
+                <img className='Picture' src={props.image} alt=""></img>
                 <div className='Info'>
-                    <p>Attack Power: {this.props.attack}</p>
-                    <p>Health: {this.props.health}</p>
+                    <p>Attack Power: {props.attack}</p>
+                    <p>Health: {props.health}</p>
                 </div>
-                <button className="AttackButton" onClick={this.props.attackButton}>Attack</button>
+                {props.define==='player'?
+                <button className="AttackButton" onClick={props.attackButton}>Attack</button>
+                :
+                <p>Enemy Auto Attack</p>
+                }
             </div>
         )
-    }
 }
+//<button className="AttackButton" onClick={props.attackButton}>Attack</button>
 
 export default Card;
