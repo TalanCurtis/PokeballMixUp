@@ -18,6 +18,7 @@ class BattleGround extends Component{
                 attack: 0,
                 lifes: 2,
                 score:0,
+                playerId:0,
             },
             opponent: {
                 name:"",
@@ -288,7 +289,10 @@ class BattleGround extends Component{
                         unmountMe={this.handleNamePanelUnmount}
                         start={this.handleNamePanelUnmount}
                     /></div>: null}
-                    {this.state.renderLeaderBoard?<LeaderBoard unmountMe={this.handleLeaderBoardUnmount}/>: null}
+                    {this.state.renderLeaderBoard?<LeaderBoard 
+                        unmountMe={this.handleLeaderBoardUnmount}
+                        playerId={this.state.player.playerId}
+                    />: null}
                     {this.state.renderCardPlayer?<Card 
                         ref="player" 
                         unmountMe={this.handleCardPlayerUnmount}

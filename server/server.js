@@ -21,10 +21,25 @@ app.post( leaderBoardBaseUrl, (req, res)=>{
 });
 
 app.put( leaderBoardBaseUrl,(req, res)=>{
-    res.status(200).send("updated leaderboard")
+    console.log(req.body)
+    leaderBoard = leaderBoard.map(index => {
+        if(index.id===req.body.id)
+        {index.name=req.body.name}
+        return index
+    })
+    console.log(leaderBoard)
+    res.status(200).send(leaderBoard)
 })
+
+/// Todo Get this delete working
 app.delete( leaderBoardBaseUrl, (req,res)=>{
-    res.status(200).send("removed player from leaderboard")
+    console.log("Deleeting from leaderbosards")
+    let idToDelete = req
+    console.log(idToDelete)
+    // leaderBoard = leaderBoard.findIndex((player)=>(player.id == idToDelete))
+    // leaderBoard.splice(idToDelete, 1)
+    // console.log(leaderBoard)
+    res.status(200).send(req)
 })
 
 
