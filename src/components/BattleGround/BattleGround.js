@@ -20,8 +20,8 @@ class BattleGround extends Component{
                 image: PokeballImg,
                 health: 0,
                 attack: 0,
-                lives: 0,
-                score:1,
+                lives: 3,
+                score:0,
                 id: 0,
             },
             opponent: {
@@ -105,8 +105,8 @@ class BattleGround extends Component{
                 }
             }
             // testing changes attack health
-            copy.attack = 0;
-            copy.health = 3;
+            copy.attack = attack;
+            copy.health = health;
             copy.pokemonName= res.data.forms[0].name
             copy.image= res.data.sprites.front_default
             this.setState({
