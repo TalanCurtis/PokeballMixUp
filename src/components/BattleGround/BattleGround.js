@@ -5,6 +5,7 @@ import Card from '../Card/Card'
 import NamePanel from '../NamePanel/NamePanel'
 import LeaderBoard from '../LeaderBoard/LeaderBoard'
 import TitleScreenImage from '../../images/TitleScreen.jpg'
+import Yoda from '../../images/YODA.gif'
 import SelfMotivateButton from '../Buttons/SelfMotivateButton'
 
 class BattleGround extends Component{
@@ -98,8 +99,8 @@ class BattleGround extends Component{
                 }
             }
             // testing changes attack health
-            copy.attack = 60;
-            copy.health = 2;
+            copy.attack = attack;
+            copy.health = health;
             copy.pokemonName= res.data.forms[0].name
             copy.image= res.data.sprites.front_default
             this.setState({
@@ -159,40 +160,58 @@ class BattleGround extends Component{
     }
 
     handleNextOpponent(){
-        console.log('next opp')
-        this.setState({renderCardOpponent:false})
-        let copy = Object.assign({}, this.state.opponent)
-        let attack = 0,
-            health = 0,
-            pokemonName="",
-            pokeId=Math.floor(Math.random()*400+1),
-            image=""
+        if(this.state.player.score<2){
+            console.log('next opp')
+            this.setState({renderCardOpponent:false})
+            let copy = Object.assign({}, this.state.opponent)
+            let attack = 0,
+                health = 0,
+                pokemonName="",
+                pokeId=Math.floor(Math.random()*400+1),
+                image=""
 
-            ///
-            axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
-            .then( res => {
-            console.log(res);
-            for (let index in res.data.stats){
-                //console.log(res.data.stats[index].stat.name)
-                if(res.data.stats[index].stat.name === "attack"){
-                    //console.log(res.data.stats[index].base_stat)
-                    attack = res.data.stats[index].base_stat
-                }else if(res.data.stats[index].stat.name === "hp"){
-                    health = res.data.stats[index].base_stat
+                ///
+                axios.get(`http://pokeapi.co/api/v2/pokemon/${pokeId}`)
+                .then( res => {
+                console.log(res);
+                for (let index in res.data.stats){
+                    //console.log(res.data.stats[index].stat.name)
+                    if(res.data.stats[index].stat.name === "attack"){
+                        //console.log(res.data.stats[index].base_stat)
+                        attack = res.data.stats[index].base_stat
+                    }else if(res.data.stats[index].stat.name === "hp"){
+                        health = res.data.stats[index].base_stat
+                    }
                 }
-            }
-            copy.attack = attack;
-            copy.health = health;
-            copy.pokemonName= res.data.forms[0].name
-            copy.image= res.data.sprites.front_default
-            let copyPlayer = Object.assign({}, this.state.player)
-            copyPlayer.score ++
-            this.setState({
-                player: copyPlayer,
-                opponent: copy,
-                renderCardOpponent: true
+                copy.attack = attack;
+                copy.health = health;
+                copy.pokemonName= res.data.forms[0].name
+                copy.image= res.data.sprites.front_default
+                let copyPlayer = Object.assign({}, this.state.player)
+                copyPlayer.score ++
+                this.setState({
+                    player: copyPlayer,
+                    opponent: copy,
+                    renderCardOpponent: true
+                })
             })
-        })
+        }else{
+            axios.get(`http://swapi.co/api/people/20`)
+            .then(res=>{
+                console.log(res.data.name)
+                alert("Whats this! A strange pokeball falls from the sky only to open up and reveal.....")
+                this.setState({
+                    opponent: {
+                        name:res.data.name,
+                        pokeId:"",
+                        pokemonName:res.data.name,
+                        image:Yoda,
+                        health:9999,
+                        attack:9999,
+                    },
+                })
+            })
+        }
     }
     handleNextPlayerPokeball(){
         console.log('next pokeball, yikes!')
@@ -218,8 +237,8 @@ class BattleGround extends Component{
                 }
             }
             // testing changes too
-            copy.attack = 3;
-            copy.health = 3;
+            copy.attack = attack;
+            copy.health = health;
             copy.pokemonName= res.data.forms[0].name;
             copy.image= res.data.sprites.front_default;
             copy.lives --;
