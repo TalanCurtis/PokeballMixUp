@@ -17,10 +17,7 @@
     border: 2px solid black;
     margin: 20px
 }
-.PlayerName{
-    color: white;
-    font-weight: bolder;
-}
+
 .PokemonName{
     color: white;
     font-weight: 200;
@@ -28,6 +25,12 @@
     text-transform: capitalize;
 }
 
+.AttackButton{
+    background: rgb(219, 9, 9);
+    height: 70px;
+    width: 160px;
+    color: white;
+}
 
 .Info{
     background: white;

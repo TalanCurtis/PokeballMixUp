@@ -1,21 +1,22 @@
 .NamePanel{
-    /* background: greenyellow; */
     width: 500px;
-    /* height: 5px; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* background-image: usl("/images/TitleScreen.jpg") */
-}
-
-.NamePanel button{
-    height: 50px;
-    width: 100px;
-    background: green;
-
 }
 
 .Spacer{
     height: 20px;
+}
+
+.StartButton{
+    height: 50px;
+    width: 120px;
+    background: rgb(14, 196, 14);
+    font-size: 200%;
+    color: darkgreen;
+    border: 2px solid rgb(2, 78, 2);
+    box-shadow: 2px 2px 2px rgb(1, 22, 1)
+    
 }

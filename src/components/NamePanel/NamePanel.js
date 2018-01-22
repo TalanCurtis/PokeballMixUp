@@ -19,7 +19,7 @@ class NamePanel extends Component{
                 <p>Good luck!</p>
                 <div className="Spacer"></div>
                 <div>
-                    <button onClick={this.props.start}>Start</button>
+                    <button className="StartButton" onClick={this.props.start}>Start</button>
                 </div>
             </div>
         )

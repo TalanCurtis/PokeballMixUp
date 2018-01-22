@@ -279,7 +279,6 @@ class BattleGround extends Component{
                     {this.state.renderNamePanel?<div>
                         <div className="Intro">
                             <img className='TitleScreenImage' src={TitleScreenImage}></img>
-                            {/* <h1> Pokeball Mixup!!! </h1> */}
                             <p>Hey kid wake up! whats your name?
                             <input 
                                 placeholder="Enter name"
@@ -315,7 +314,7 @@ class BattleGround extends Component{
                     />: null}
                 </div>
                 <div className="BotBar">
-                    <p>lives left: {this.state.player.lives}</p>
+                    <p className="Lives">lives left: {this.state.player.lives}</p>
                     <button onClick={this.handleNamePanelUnmount}>PlayAgain</button>
                     <button onClick={this.handleLeaderBoardUnmount}>LeaderBoards</button>
                 </div>
